@@ -1,0 +1,168 @@
+﻿@page "{id:int?}"
+@model _112NewsVideoMarked.Pages.Cases.MediaUploadModel
+@{
+    ViewData["Title"] = "Upload materiale";
+}
+
+<h1>Upload Video og Billeder</h1>
+
+<div>
+    <h4>Sags nr: @Html.DisplayFor(model => model.CaseContent.CaseContentID)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Photographer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Photographer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Street)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Street)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Town)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Town)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.PostalCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.PostalCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Published)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Published)
+        </dd>
+    </dl>
+    <a asp-page="./Edit" asp-route-id="@Model.CaseContent.CaseContentID">Rediger sag</a> |
+    <a asp-page="./Index">Afslut</a>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Upload</label>
+                <input asp-for="FileUpload.VideoFile" type="file" class="form-control" />
+                <span asp-validation-for="FileUpload.VideoFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Upload" asp-page-handler="Upload" asp-route-id="@Model.CaseContent.CaseContentID" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th class="col-md-2">
+                <label>Handling</label>
+            </th>
+            <th class="col-md-2">
+                <label>ID</label>
+            </th>
+            <th class="col-md-4">
+                <label>Titel</label>
+            </th>
+            <th class="col-md-4">
+                <label>Video</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var video in Model.CaseContent.Videos)
+        {
+            <tr class="row">
+                <td>
+                    <a asp-page-handler="DeleteVideo"
+                       asp-route-videoId="@video.VideoID"
+                       asp-route-caseContentId="@video.CaseContentID">
+                        Slet
+                    </a>
+                </td>
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => video.VideoID)
+                </td>
+                <td class="col-md-4">
+                    @Html.DisplayFor(modelItem => video.VideoName)
+                </td>
+                <td class="col-md-4">
+                    <video width="320" height="240">
+                        <source src="@video.VideoPath" type="video/mp4">
+                    </video>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th class="col-md-2">
+                <label>Handling</label>
+            </th>
+            <th class="col-md-2">
+                <label>ID</label>
+            </th>
+            <th class="col-md-4">
+                <label>Titel</label>
+            </th>
+            <th class="col-md-4">
+                <label>Billede</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var image in Model.CaseContent.Images)
+        {
+            <tr class="row">
+                <td class="col-md-2">
+                    <a asp-page-handler="DeleteImage"
+                       asp-route-imageId="@image.ImageID"
+                       asp-route-caseContentId="@image.CaseContentID">
+                        Slet
+                    </a>
+                </td>
+                <td class="col-md-2">
+                    @Html.DisplayFor(modelItem => image.ImageID)
+                </td>
+                <td class="col-md-4">
+                    @Html.DisplayFor(modelItem => image.ImageName)
+                </td>
+                <td class="col-md-4 img-thumbnail">
+                    <img height="250" width="350" src="@Html.DisplayFor(modelItem => image.ImagePath)" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

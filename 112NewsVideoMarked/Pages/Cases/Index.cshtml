@@ -1,0 +1,73 @@
+﻿@page
+@model _112NewsVideoMarked.Pages.Cases.IndexModel
+
+@{
+    ViewData["Title"] = "Sager";
+}
+
+<h1>Oversigt</h1>
+
+<p>
+    <a asp-page="Create">Opret sag</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseContent[0].Photographer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseContent[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseContent[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseContent[0].Street)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseContent[0].Town)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseContent[0].PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaseContent[0].Published)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CaseContent)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Photographer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Street)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Town)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Published)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.CaseContentID">Rediger</a> |
+                    <a asp-page="./Details" asp-route-id="@item.CaseContentID">Detaljer</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.CaseContentID">Slet</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

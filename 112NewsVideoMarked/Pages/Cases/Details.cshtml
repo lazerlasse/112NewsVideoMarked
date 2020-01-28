@@ -1,0 +1,61 @@
+﻿@page
+@model _112NewsVideoMarked.Pages.Cases.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>CaseContent</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Photographer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Photographer)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Street)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Street)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Town)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Town)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.PostalCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.PostalCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CaseContent.Published)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CaseContent.Published)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.CaseContent.CaseContentID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

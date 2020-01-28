@@ -1,0 +1,65 @@
+﻿@page
+@model _112NewsVideoMarked.Pages.Cases.EditModel
+
+@{
+    ViewData["Title"] = "Rediger sag";
+}
+
+<h1>Edit</h1>
+
+<h4>CaseContent</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CaseContent.CaseContentID" />
+            <div class="form-group">
+                <label asp-for="CaseContent.Photographer" class="control-label"></label>
+                <input asp-for="CaseContent.Photographer" class="form-control" />
+                <span asp-validation-for="CaseContent.Photographer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseContent.Title" class="control-label"></label>
+                <input asp-for="CaseContent.Title" class="form-control" />
+                <span asp-validation-for="CaseContent.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseContent.Description" class="control-label"></label>
+                <input asp-for="CaseContent.Description" class="form-control" />
+                <span asp-validation-for="CaseContent.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseContent.Street" class="control-label"></label>
+                <input asp-for="CaseContent.Street" class="form-control" />
+                <span asp-validation-for="CaseContent.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseContent.Town" class="control-label"></label>
+                <input asp-for="CaseContent.Town" class="form-control" />
+                <span asp-validation-for="CaseContent.Town" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseContent.PostalCode" class="control-label"></label>
+                <input asp-for="CaseContent.PostalCode" class="form-control" />
+                <span asp-validation-for="CaseContent.PostalCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaseContent.Published" class="control-label"></label>
+                <input asp-for="CaseContent.Published" class="form-control" />
+                <span asp-validation-for="CaseContent.Published" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Gem ændringer" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Fortryd</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
